@@ -1,0 +1,7 @@
+{
+  "name": "gh-dash",
+  "description": "GitHub PR dashboard with CI/CD status indicators and merge capability",
+  "author": {
+    "name": "Jake Kozloski"
+  }
+}

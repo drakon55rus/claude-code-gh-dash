@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash(gh pr create*)",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "A PR was just created. Now run /gh-dash:pr to display the PR dashboard with status, CI/CD checks, and live updates."
+          }
+        ]
+      }
+    ]
+  }
+}
