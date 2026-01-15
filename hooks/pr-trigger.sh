@@ -1,6 +1,9 @@
 #!/bin/bash
 # Hook script for PostToolUse - triggers PR dashboard after gh pr create
 
+# Silently exit if jq is not available
+command -v jq >/dev/null 2>&1 || exit 0
+
 # Read JSON input from stdin
 INPUT=$(cat)
 

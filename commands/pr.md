@@ -112,7 +112,7 @@ After displaying the dashboard, you MUST check if ANY status check in `statusChe
 
 ### Polling Algorithm (MANDATORY when checks are running):
 
-```
+```text
 iteration = 0
 max_iterations = 60
 
