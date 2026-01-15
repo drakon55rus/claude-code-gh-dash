@@ -106,7 +106,7 @@ If $ARGUMENTS contains `--merge`:
 
 ⚠️ **THIS STEP IS NOT OPTIONAL - YOU MUST IMPLEMENT THE POLLING LOOP**
 
-After displaying the dashboard, you MUST check if ANY status check in `statusCheckRollup` has a state of: `PENDING`, `QUEUED`, `IN_PROGRESS`, or `RUNNING` (case-insensitive).
+After displaying the dashboard, you MUST check if ANY status check in `statusCheckRollup` has a non-terminal status: `QUEUED`, `IN_PROGRESS`, `WAITING`, `REQUESTED`, or `PENDING` (case-insensitive).
 
 **DO NOT STOP YOUR RESPONSE** if checks are still running. You must continue polling.
 
@@ -120,7 +120,7 @@ WHILE iteration < max_iterations:
   1. Display the dashboard (Step 2 format)
 
   2. Check statusCheckRollup states:
-     - Count checks with states: PENDING, QUEUED, IN_PROGRESS, RUNNING
+     - Count checks with non-terminal status: QUEUED, IN_PROGRESS, WAITING, REQUESTED, PENDING
      - If count == 0 → BREAK (all checks complete)
 
   3. Output: "⏳ Refreshing in 10s... (Ctrl+C to stop)"
@@ -146,7 +146,7 @@ END WHILE
 1. **DO NOT END YOUR RESPONSE** after showing the dashboard once if checks are pending
 2. **DO NOT ASK THE USER** if they want to continue polling - just do it
 3. **EXECUTE `sleep 10`** between each refresh - this is a real bash command
-4. **KEEP LOOPING** until ALL checks reach terminal states (SUCCESS/FAILURE/ERROR/SKIPPED/CANCELLED/NEUTRAL)
+4. **KEEP LOOPING** until ALL checks reach terminal conclusions (SUCCESS/FAILURE/CANCELLED/NEUTRAL/SKIPPED/ACTION_REQUIRED/STALE/TIMED_OUT)
 5. **RE-FETCH DATA** on every iteration - do not reuse stale data
 
 The polling loop is the core feature of this dashboard. Stopping early defeats the purpose.
